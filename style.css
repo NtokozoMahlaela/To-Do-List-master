@@ -2,16 +2,14 @@ html {
   font-size: 15px;
 }
 
-body {
-  background: -webkit-gradient(
-      linear,
-      left top,
-      right bottom,
-      from(#af5e94),
-      to(#5949f2)
-    )
-    fixed;
-}
+
+  body {
+    background-image: url('images/pexels-tara-winstead-8386758.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+  
 
 a {
   color: rgb(0, 0, 0);
