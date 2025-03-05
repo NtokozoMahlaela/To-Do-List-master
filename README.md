@@ -19,8 +19,8 @@ Version Control: Git & GitHub
 🏁 Getting Started
 1️⃣ Clone the Repository
 
-git clone https://github.com/NtokozoMahlaela/To-Do-List master.git
-cd To-Do-List master
+git clone https://github.com/NtokozoMahlaela/To-Do-List-master.git
+cd To-Do-List-master
 2️⃣ Install Dependencies
 If using only the frontend, no dependencies are needed.
 For a backend setup, install Node.js dependencies:
