@@ -1,8 +1,9 @@
 ✅ To-Do List App
 
-A simple and responsive To-Do List application that helps users add, edit, delete, and organize tasks efficiently. Tasks are stored locally in the browser or can be connected to a MongoDB database for persistence.
+A simple and responsive To Do List application that helps users add, edit, delete, and organize tasks efficiently. Tasks are stored locally in the browser or can be connected to a MongoDB database for persistence.
 
 🚀 Features
+
 ✔️ Add, Edit, Delete Tasks – Manage your daily tasks easily.
 ✔️ Mark Tasks as Completed – Keep track of completed work.
 ✔️ Task Categories – Categorize tasks as Personal or Business.
