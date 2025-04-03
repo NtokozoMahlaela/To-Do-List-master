@@ -1,5 +1,5 @@
 :root {
-  --primary: #6c5ce7;
+  --primary: #1e96b4;
   --primary-light: #a29bfe;
   --secondary: #00cec9;
   --danger: #ff7675;
@@ -132,7 +132,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #5649d1;
+  background-color: #d11919;
 }
 
 .btn-outline-danger {
