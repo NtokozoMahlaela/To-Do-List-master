@@ -22,6 +22,7 @@ body {
   color: var(--dark);
   min-height: 100vh;
   display: flex;
+  padding: 50px;
   flex-direction: column;
   background-size: cover;
   background-position: center;
@@ -30,6 +31,138 @@ body {
   transition: background-image 0.5s ease;
 }
 
+/* Modal Styles */
+.modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.modal-header {
+  background-color: var(--primary);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.modal-header h2 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.auth-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--gray);
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--dark);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.tab-btn.active {
+  color: var(--primary);
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.auth-form {
+  display: none;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #16819c;
+}
+
+.btn-outline-danger {
+  background-color: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--danger);
+  color: white;
+}
+
+/* Existing styles from your original CSS */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -45,6 +178,7 @@ body {
 .header {
   text-align: center;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .header h1 {
@@ -56,6 +190,12 @@ body {
 .header p {
   color: var(--dark);
   opacity: 0.8;
+}
+
+#logout-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .app-container {
@@ -132,7 +272,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #d11919;
+  background-color: #16819c;
 }
 
 .btn-outline-danger {
@@ -311,6 +451,18 @@ body {
 }
 
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+footer {
   background-color: var(--dark);
   color: white;
   text-align: center;
@@ -436,5 +588,9 @@ footer a:hover {
   .bg-settings {
       top: 10px;
       right: 10px;
+  }
+  
+  .modal-content {
+      width: 95%;
   }
 }
