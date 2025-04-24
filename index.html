@@ -1,149 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="keywords"
-      content="to do list, online to do list, to do list app"
-    />
-    <meta
-      name="description"
-      content="Responsive, online To Do List App that can save the tasks into local storage.
-    Whenever you enter from a device, your information won't be lost unless clear local storage by clearing the history or doing something else."
-    />
+    <meta name="keywords" content="to do list, online to do list, to do list app" />
+    <meta name="description" content="Modern, responsive To Do List App with local storage, task prioritization, due dates, and more." />
     <meta name="author" content="Ntokozo Mahlaela" />
-    <title>To Do List</title>
-    <script
-      src="https://kit.fontawesome.com/9c206210e0.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="mx-auto container mt-5 row">
-      <div class="task-add-box my-3 col-12 col-lg-4 order-lg-3">
-        <div class="card">
-          <div class="card-header"><h5>Add New Task</h5></div>
-          <div class="card-body px-4">
-            <form id="addingForm" class="form-group row" action="">
-              <input
-                class="form-control col-10 col-md-11 col-lg-10"
-                type="text"
-                placeholder="Enter a task"
-              />
-              <button
-                type="submit"
-                class="btn btn-outline-success col-2 col-md-1 col-lg-2"
-              >
-                <i class="fas fa-plus"></i>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="space col-0 col-lg-1 order-lg-2"></div>
-
-      <div class="list-box my-3 col-12 col-lg-7 order-lg-1">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="float-left">To Do List</h5>
-            <a
-              href=""
-              class="float-right btn btn-outline-danger rounded"
-              id="delAll"
-            >
-              Delete All
-            </a>
-          </div>
-          <div class="card-body p-0">
-            <ul id="mainList" class="list-group">
-              <div id="accordion">
-                <li id="upperLi" class="list-group-item d-none">
-                  <a
-                    href="#collapse0"
-                    class="card-link list-item line-throught"
-                    data-toggle="collapse"
-                  >
-                    <!--Text Here-->
-                  </a>
-
-                  <a
-                    href="#"
-                    class="delete-item text-danger float-right fas fa-times mt-1 mx-1"
-                  ></a>
-                  <a
-                    href="#"
-                    class="check text-success float-right fas fa-check mt-1 mx-4"
-                  ></a>
-                  <div id="collapse0" class="collapse" data-parent="#accordion">
-                    <div class="under-list-item">
-                      <ul class="list-group">
-                        <li id="innerLi" class="list-group-item">
-                          <span class="m-0 p-0"><!--Text Here--></span>
-                          <a
-                            href="#"
-                            class="d-none delete-inner-item text-danger float-right fas fa-times mt-1 mx-1"
-                          ></a>
-                          <a
-                            href="#"
-                            class="d-none inner-check text-success float-right fas fa-check mt-1 mx-4"
-                          ></a>
-                        </li>
-                        <div class="mt-2 under-list-input px-4">
-                          <form action="" class="form-group row">
-                            <input
-                              class="form-control col-10 col-md-11"
-                              type="text"
-                              placeholder="Enter Subtask"
-                            />
-                            <button
-                              type="submit"
-                              class="btn-add-inner-task btn btn-primary col-2 col-md-1 p-0"
-                            >
-                              <i class="i-add-inner-task fas fa-plus"></i>
-                            </button>
-                          </form>
+    <title>Ntokozo's To-Do List</title>
+    <script src="https://kit.fontawesome.com/9c206210e0.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login/Register Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome to Your To-Do List</h2>
+                <p>Please login or register to continue</p>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-tab="login">Login</button>
+                    <button class="tab-btn" data-tab="register">Register</button>
+                </div>
+                
+                <div id="login-form" class="auth-form active">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" class="form-control" required>
                         </div>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-              </div>
-            </ul>
-          </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                </div>
+                
+                <div id="register-form" class="auth-form">
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="register-name">Full Name</label>
+                            <input type="text" id="register-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" class="form-control" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm">Confirm Password</label>
+                            <input type="password" id="register-confirm" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
-    <footer class="bg-dark text-light text-center p-3">
-      <a href="https://www.github.com/okanuregen" class="text-light"
-        >Ntokozo Mahlaela @2025</a
-      >
-    </footer>
+    <!-- Main App Content (hidden until logged in) -->
+    <div id="app-content" style="display: none;">
+        <div class="content-wrapper">
+        <!-- Background Settings Dropdown -->
+        <div class="bg-settings">
+            <div class="bg-dropdown">
+                <button class="bg-btn">
+                    <i class="fas fa-image"></i>
+                    <span> Change Background</span>
+                </button>
+                <div class="bg-content">
+                    <div class="bg-option" data-bg="none">
+                        <i class="fas fa-times"></i>
+                        <span>No Background</span>
+                    </div>
+                    <div class="bg-option" data-bg="url('https://images.unsplash.com/photo-1499002238440-d264edd596ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                        <i class="fas fa-mountain"></i>
+                        <span>Mountain View</span>
+                    </div>
+                    <div class="bg-option" data-bg="url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                        <i class="fas fa-water"></i>
+                        <span>Lake View</span>
+                    </div>
+                    <div class="bg-option" data-bg="url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                        <i class="fas fa-cloud"></i>
+                        <span>Cloudy Sky</span>
+                    </div>
+                    <div class="bg-option" data-bg="url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                        <i class="fas fa-tree"></i>
+                        <span>Forest</span>
+                    </div>
+                    <div class="bg-option" data-bg="url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                        <i class="fas fa-umbrella-beach"></i>
+                        <span>Beach</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <script src="script2.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+        <div class="container">
+            <div class="header">
+                <h1>Ntokozo's To-Do List</h1>
+                <p>Organize your tasks efficiently and beautifully</p>
+                <button id="logout-btn" class="btn btn-outline-danger btn-sm">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <div class="app-container">
+                <div class="task-add-box">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Add New Task</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="addingForm" class="form-group">
+                                <div class="mb-3">
+                                    <input id="taskInput" class="form-control" type="text" placeholder="Enter a task" required>
+                                </div>
+                                <div class="mb-3">
+                                    <textarea id="taskDescription" class="form-control" rows="2" placeholder="Description (optional)"></textarea>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="dueDate">Due Date</label>
+                                        <input id="dueDate" class="form-control" type="datetime-local" placeholder="Select date">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="priority">Priority</label>
+                                        <select id="priority" class="form-control">
+                                            <option value="low">Low</option>
+                                            <option value="medium" selected>Medium</option>
+                                            <option value="high">High</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="fas fa-plus"></i> Add Task
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-box">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="m-0">My Tasks</h5>
+                            <div class="filter-controls">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="active">Active</button>
+                                <button class="filter-btn" data-filter="completed">Completed</button>
+                                <button class="filter-btn" data-filter="high">High Priority</button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul id="taskList" class="list-group">
+                                <div class="empty-state">
+                                    <i class="fas fa-tasks"></i>
+                                    <h4>No tasks yet</h4>
+                                    <p>Add your first task to get started</p>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <a href="https://github.com/NtokozoMahlaela">Ntokozo Mahlaela @2025</a>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="script.js"></script>
+</body>
 </html>
