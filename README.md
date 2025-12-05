@@ -58,37 +58,7 @@ Backend (Optional):
 Set the environment variable for the port:
 PORT=5000
 
-Start the server:
-node server.js
 
-Live Server:
-If using Live Server in VS Code, start it directly from the editor.
-
-🔗 Firebase Integration
-This project supports Firebase Realtime Database for task persistence. To enable Firebase:
-
-
-Go to the Firebase Console.
-Create a new project and enable Realtime Database.
-Update the firebaseConfig object in firebase.js with your Firebase project credentials:
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    databaseURL: "YOUR_DATABASE_URL",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
-    measurementId: "YOUR_MEASUREMENT_ID"
-};
-
-Ensure your Firebase Realtime Database rules allow read/write access for testing:
-{
-    "rules": {
-        ".read": "true",
-        ".write": "true"
-    }
-}
 📂 Project Structure
 To-Do-List-master/
 │
@@ -102,11 +72,7 @@ To-Do-List-master/
 🤝 Contributing
 Contributions are welcome! If you'd like to contribute:
 
-Fork the repository.
-Create a new branch (git checkout -b feature-name).
-Commit your changes (git commit -m "Add feature").
-Push to the branch (git push origin feature-name).
-Open a pull request.
+
 📜 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
